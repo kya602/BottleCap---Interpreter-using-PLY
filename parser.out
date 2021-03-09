@@ -1,0 +1,917 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statement
+Rule 3     statements -> statement NEXT statements
+Rule 4     statement -> assignment_statement
+Rule 5     statement -> operation_statement
+Rule 6     statement -> print_statement
+Rule 7     statement -> expression
+Rule 8     assignment_statement -> ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+Rule 9     print_statement -> PRINT OBRACE expression CBRACE
+Rule 10    operation_statement -> MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+Rule 11    operation_statement -> DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+Rule 12    operation_statement -> ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+Rule 13    operation_statement -> SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+Rule 14    expression -> expression expression TIMES
+Rule 15    expression -> expression expression DIVIDE
+Rule 16    expression -> expression expression PLUS
+Rule 17    expression -> expression expression MINUS
+Rule 18    expression -> ID
+Rule 19    expression -> NUMBER
+
+Terminals, with rules where they appear
+
+ADD                  : 12
+ASSIGN               : 8
+BY                   : 10 11
+CBRACE               : 8 8 9 10 10 11 11 12 12 13 13
+DIV                  : 11
+DIVIDE               : 15
+FROM                 : 13
+ID                   : 8 18
+MINUS                : 17
+MUL                  : 10
+NEXT                 : 3
+NUMBER               : 19
+OBRACE               : 8 8 9 10 10 11 11 12 12 13 13
+PLUS                 : 16
+PRINT                : 9
+SUB                  : 13
+TIMES                : 14
+TO                   : 8
+W                    : 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment_statement : 4
+expression           : 7 8 9 14 14 15 15 16 16 17 17
+operation_statement  : 5
+print_statement      : 6
+program              : 0
+statement            : 2 3 10 10 11 11 12 12 13 13
+statements           : 1 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statement
+    (3) statements -> . statement NEXT statements
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statements .
+
+    $end            reduce using rule 1 (program -> statements .)
+
+
+state 3
+
+    (2) statements -> statement .
+    (3) statements -> statement . NEXT statements
+
+    $end            reduce using rule 2 (statements -> statement .)
+    NEXT            shift and go to state 16
+
+
+state 4
+
+    (4) statement -> assignment_statement .
+
+    NEXT            reduce using rule 4 (statement -> assignment_statement .)
+    $end            reduce using rule 4 (statement -> assignment_statement .)
+    CBRACE          reduce using rule 4 (statement -> assignment_statement .)
+
+
+state 5
+
+    (5) statement -> operation_statement .
+
+    NEXT            reduce using rule 5 (statement -> operation_statement .)
+    $end            reduce using rule 5 (statement -> operation_statement .)
+    CBRACE          reduce using rule 5 (statement -> operation_statement .)
+
+
+state 6
+
+    (6) statement -> print_statement .
+
+    NEXT            reduce using rule 6 (statement -> print_statement .)
+    $end            reduce using rule 6 (statement -> print_statement .)
+    CBRACE          reduce using rule 6 (statement -> print_statement .)
+
+
+state 7
+
+    (7) statement -> expression .
+    (14) expression -> expression . expression TIMES
+    (15) expression -> expression . expression DIVIDE
+    (16) expression -> expression . expression PLUS
+    (17) expression -> expression . expression MINUS
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    NEXT            reduce using rule 7 (statement -> expression .)
+    $end            reduce using rule 7 (statement -> expression .)
+    CBRACE          reduce using rule 7 (statement -> expression .)
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    expression                     shift and go to state 17
+
+state 8
+
+    (8) assignment_statement -> ASSIGN . OBRACE ID CBRACE TO OBRACE expression CBRACE
+
+    OBRACE          shift and go to state 18
+
+
+state 9
+
+    (18) expression -> ID .
+
+    ID              reduce using rule 18 (expression -> ID .)
+    NUMBER          reduce using rule 18 (expression -> ID .)
+    NEXT            reduce using rule 18 (expression -> ID .)
+    $end            reduce using rule 18 (expression -> ID .)
+    TIMES           reduce using rule 18 (expression -> ID .)
+    DIVIDE          reduce using rule 18 (expression -> ID .)
+    PLUS            reduce using rule 18 (expression -> ID .)
+    MINUS           reduce using rule 18 (expression -> ID .)
+    CBRACE          reduce using rule 18 (expression -> ID .)
+
+
+state 10
+
+    (10) operation_statement -> MUL . OBRACE statement CBRACE BY OBRACE statement CBRACE
+
+    OBRACE          shift and go to state 19
+
+
+state 11
+
+    (11) operation_statement -> DIV . OBRACE statement CBRACE BY OBRACE statement CBRACE
+
+    OBRACE          shift and go to state 20
+
+
+state 12
+
+    (12) operation_statement -> ADD . OBRACE statement CBRACE W OBRACE statement CBRACE
+
+    OBRACE          shift and go to state 21
+
+
+state 13
+
+    (13) operation_statement -> SUB . OBRACE statement CBRACE FROM OBRACE statement CBRACE
+
+    OBRACE          shift and go to state 22
+
+
+state 14
+
+    (9) print_statement -> PRINT . OBRACE expression CBRACE
+
+    OBRACE          shift and go to state 23
+
+
+state 15
+
+    (19) expression -> NUMBER .
+
+    ID              reduce using rule 19 (expression -> NUMBER .)
+    NUMBER          reduce using rule 19 (expression -> NUMBER .)
+    NEXT            reduce using rule 19 (expression -> NUMBER .)
+    $end            reduce using rule 19 (expression -> NUMBER .)
+    TIMES           reduce using rule 19 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 19 (expression -> NUMBER .)
+    PLUS            reduce using rule 19 (expression -> NUMBER .)
+    MINUS           reduce using rule 19 (expression -> NUMBER .)
+    CBRACE          reduce using rule 19 (expression -> NUMBER .)
+
+
+state 16
+
+    (3) statements -> statement NEXT . statements
+    (2) statements -> . statement
+    (3) statements -> . statement NEXT statements
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 3
+    statements                     shift and go to state 24
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 17
+
+    (14) expression -> expression expression . TIMES
+    (15) expression -> expression expression . DIVIDE
+    (16) expression -> expression expression . PLUS
+    (17) expression -> expression expression . MINUS
+    (14) expression -> expression . expression TIMES
+    (15) expression -> expression . expression DIVIDE
+    (16) expression -> expression . expression PLUS
+    (17) expression -> expression . expression MINUS
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    TIMES           shift and go to state 25
+    DIVIDE          shift and go to state 26
+    PLUS            shift and go to state 27
+    MINUS           shift and go to state 28
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    expression                     shift and go to state 17
+
+state 18
+
+    (8) assignment_statement -> ASSIGN OBRACE . ID CBRACE TO OBRACE expression CBRACE
+
+    ID              shift and go to state 29
+
+
+state 19
+
+    (10) operation_statement -> MUL OBRACE . statement CBRACE BY OBRACE statement CBRACE
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 30
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 20
+
+    (11) operation_statement -> DIV OBRACE . statement CBRACE BY OBRACE statement CBRACE
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 31
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 21
+
+    (12) operation_statement -> ADD OBRACE . statement CBRACE W OBRACE statement CBRACE
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 32
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 22
+
+    (13) operation_statement -> SUB OBRACE . statement CBRACE FROM OBRACE statement CBRACE
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 33
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 23
+
+    (9) print_statement -> PRINT OBRACE . expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    expression                     shift and go to state 34
+
+state 24
+
+    (3) statements -> statement NEXT statements .
+
+    $end            reduce using rule 3 (statements -> statement NEXT statements .)
+
+
+state 25
+
+    (14) expression -> expression expression TIMES .
+
+    ID              reduce using rule 14 (expression -> expression expression TIMES .)
+    NUMBER          reduce using rule 14 (expression -> expression expression TIMES .)
+    NEXT            reduce using rule 14 (expression -> expression expression TIMES .)
+    $end            reduce using rule 14 (expression -> expression expression TIMES .)
+    TIMES           reduce using rule 14 (expression -> expression expression TIMES .)
+    DIVIDE          reduce using rule 14 (expression -> expression expression TIMES .)
+    PLUS            reduce using rule 14 (expression -> expression expression TIMES .)
+    MINUS           reduce using rule 14 (expression -> expression expression TIMES .)
+    CBRACE          reduce using rule 14 (expression -> expression expression TIMES .)
+
+
+state 26
+
+    (15) expression -> expression expression DIVIDE .
+
+    ID              reduce using rule 15 (expression -> expression expression DIVIDE .)
+    NUMBER          reduce using rule 15 (expression -> expression expression DIVIDE .)
+    NEXT            reduce using rule 15 (expression -> expression expression DIVIDE .)
+    $end            reduce using rule 15 (expression -> expression expression DIVIDE .)
+    TIMES           reduce using rule 15 (expression -> expression expression DIVIDE .)
+    DIVIDE          reduce using rule 15 (expression -> expression expression DIVIDE .)
+    PLUS            reduce using rule 15 (expression -> expression expression DIVIDE .)
+    MINUS           reduce using rule 15 (expression -> expression expression DIVIDE .)
+    CBRACE          reduce using rule 15 (expression -> expression expression DIVIDE .)
+
+
+state 27
+
+    (16) expression -> expression expression PLUS .
+
+    ID              reduce using rule 16 (expression -> expression expression PLUS .)
+    NUMBER          reduce using rule 16 (expression -> expression expression PLUS .)
+    NEXT            reduce using rule 16 (expression -> expression expression PLUS .)
+    $end            reduce using rule 16 (expression -> expression expression PLUS .)
+    TIMES           reduce using rule 16 (expression -> expression expression PLUS .)
+    DIVIDE          reduce using rule 16 (expression -> expression expression PLUS .)
+    PLUS            reduce using rule 16 (expression -> expression expression PLUS .)
+    MINUS           reduce using rule 16 (expression -> expression expression PLUS .)
+    CBRACE          reduce using rule 16 (expression -> expression expression PLUS .)
+
+
+state 28
+
+    (17) expression -> expression expression MINUS .
+
+    ID              reduce using rule 17 (expression -> expression expression MINUS .)
+    NUMBER          reduce using rule 17 (expression -> expression expression MINUS .)
+    NEXT            reduce using rule 17 (expression -> expression expression MINUS .)
+    $end            reduce using rule 17 (expression -> expression expression MINUS .)
+    TIMES           reduce using rule 17 (expression -> expression expression MINUS .)
+    DIVIDE          reduce using rule 17 (expression -> expression expression MINUS .)
+    PLUS            reduce using rule 17 (expression -> expression expression MINUS .)
+    MINUS           reduce using rule 17 (expression -> expression expression MINUS .)
+    CBRACE          reduce using rule 17 (expression -> expression expression MINUS .)
+
+
+state 29
+
+    (8) assignment_statement -> ASSIGN OBRACE ID . CBRACE TO OBRACE expression CBRACE
+
+    CBRACE          shift and go to state 35
+
+
+state 30
+
+    (10) operation_statement -> MUL OBRACE statement . CBRACE BY OBRACE statement CBRACE
+
+    CBRACE          shift and go to state 36
+
+
+state 31
+
+    (11) operation_statement -> DIV OBRACE statement . CBRACE BY OBRACE statement CBRACE
+
+    CBRACE          shift and go to state 37
+
+
+state 32
+
+    (12) operation_statement -> ADD OBRACE statement . CBRACE W OBRACE statement CBRACE
+
+    CBRACE          shift and go to state 38
+
+
+state 33
+
+    (13) operation_statement -> SUB OBRACE statement . CBRACE FROM OBRACE statement CBRACE
+
+    CBRACE          shift and go to state 39
+
+
+state 34
+
+    (9) print_statement -> PRINT OBRACE expression . CBRACE
+    (14) expression -> expression . expression TIMES
+    (15) expression -> expression . expression DIVIDE
+    (16) expression -> expression . expression PLUS
+    (17) expression -> expression . expression MINUS
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    CBRACE          shift and go to state 40
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    expression                     shift and go to state 17
+
+state 35
+
+    (8) assignment_statement -> ASSIGN OBRACE ID CBRACE . TO OBRACE expression CBRACE
+
+    TO              shift and go to state 41
+
+
+state 36
+
+    (10) operation_statement -> MUL OBRACE statement CBRACE . BY OBRACE statement CBRACE
+
+    BY              shift and go to state 42
+
+
+state 37
+
+    (11) operation_statement -> DIV OBRACE statement CBRACE . BY OBRACE statement CBRACE
+
+    BY              shift and go to state 43
+
+
+state 38
+
+    (12) operation_statement -> ADD OBRACE statement CBRACE . W OBRACE statement CBRACE
+
+    W               shift and go to state 44
+
+
+state 39
+
+    (13) operation_statement -> SUB OBRACE statement CBRACE . FROM OBRACE statement CBRACE
+
+    FROM            shift and go to state 45
+
+
+state 40
+
+    (9) print_statement -> PRINT OBRACE expression CBRACE .
+
+    NEXT            reduce using rule 9 (print_statement -> PRINT OBRACE expression CBRACE .)
+    $end            reduce using rule 9 (print_statement -> PRINT OBRACE expression CBRACE .)
+    CBRACE          reduce using rule 9 (print_statement -> PRINT OBRACE expression CBRACE .)
+
+
+state 41
+
+    (8) assignment_statement -> ASSIGN OBRACE ID CBRACE TO . OBRACE expression CBRACE
+
+    OBRACE          shift and go to state 46
+
+
+state 42
+
+    (10) operation_statement -> MUL OBRACE statement CBRACE BY . OBRACE statement CBRACE
+
+    OBRACE          shift and go to state 47
+
+
+state 43
+
+    (11) operation_statement -> DIV OBRACE statement CBRACE BY . OBRACE statement CBRACE
+
+    OBRACE          shift and go to state 48
+
+
+state 44
+
+    (12) operation_statement -> ADD OBRACE statement CBRACE W . OBRACE statement CBRACE
+
+    OBRACE          shift and go to state 49
+
+
+state 45
+
+    (13) operation_statement -> SUB OBRACE statement CBRACE FROM . OBRACE statement CBRACE
+
+    OBRACE          shift and go to state 50
+
+
+state 46
+
+    (8) assignment_statement -> ASSIGN OBRACE ID CBRACE TO OBRACE . expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    expression                     shift and go to state 51
+
+state 47
+
+    (10) operation_statement -> MUL OBRACE statement CBRACE BY OBRACE . statement CBRACE
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 52
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 48
+
+    (11) operation_statement -> DIV OBRACE statement CBRACE BY OBRACE . statement CBRACE
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 53
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 49
+
+    (12) operation_statement -> ADD OBRACE statement CBRACE W OBRACE . statement CBRACE
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 54
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 50
+
+    (13) operation_statement -> SUB OBRACE statement CBRACE FROM OBRACE . statement CBRACE
+    (4) statement -> . assignment_statement
+    (5) statement -> . operation_statement
+    (6) statement -> . print_statement
+    (7) statement -> . expression
+    (8) assignment_statement -> . ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE
+    (10) operation_statement -> . MUL OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (11) operation_statement -> . DIV OBRACE statement CBRACE BY OBRACE statement CBRACE
+    (12) operation_statement -> . ADD OBRACE statement CBRACE W OBRACE statement CBRACE
+    (13) operation_statement -> . SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE
+    (9) print_statement -> . PRINT OBRACE expression CBRACE
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    ASSIGN          shift and go to state 8
+    MUL             shift and go to state 10
+    DIV             shift and go to state 11
+    ADD             shift and go to state 12
+    SUB             shift and go to state 13
+    PRINT           shift and go to state 14
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    statement                      shift and go to state 55
+    assignment_statement           shift and go to state 4
+    operation_statement            shift and go to state 5
+    print_statement                shift and go to state 6
+    expression                     shift and go to state 7
+
+state 51
+
+    (8) assignment_statement -> ASSIGN OBRACE ID CBRACE TO OBRACE expression . CBRACE
+    (14) expression -> expression . expression TIMES
+    (15) expression -> expression . expression DIVIDE
+    (16) expression -> expression . expression PLUS
+    (17) expression -> expression . expression MINUS
+    (14) expression -> . expression expression TIMES
+    (15) expression -> . expression expression DIVIDE
+    (16) expression -> . expression expression PLUS
+    (17) expression -> . expression expression MINUS
+    (18) expression -> . ID
+    (19) expression -> . NUMBER
+
+    CBRACE          shift and go to state 56
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 15
+
+    expression                     shift and go to state 17
+
+state 52
+
+    (10) operation_statement -> MUL OBRACE statement CBRACE BY OBRACE statement . CBRACE
+
+    CBRACE          shift and go to state 57
+
+
+state 53
+
+    (11) operation_statement -> DIV OBRACE statement CBRACE BY OBRACE statement . CBRACE
+
+    CBRACE          shift and go to state 58
+
+
+state 54
+
+    (12) operation_statement -> ADD OBRACE statement CBRACE W OBRACE statement . CBRACE
+
+    CBRACE          shift and go to state 59
+
+
+state 55
+
+    (13) operation_statement -> SUB OBRACE statement CBRACE FROM OBRACE statement . CBRACE
+
+    CBRACE          shift and go to state 60
+
+
+state 56
+
+    (8) assignment_statement -> ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE .
+
+    NEXT            reduce using rule 8 (assignment_statement -> ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE .)
+    $end            reduce using rule 8 (assignment_statement -> ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE .)
+    CBRACE          reduce using rule 8 (assignment_statement -> ASSIGN OBRACE ID CBRACE TO OBRACE expression CBRACE .)
+
+
+state 57
+
+    (10) operation_statement -> MUL OBRACE statement CBRACE BY OBRACE statement CBRACE .
+
+    NEXT            reduce using rule 10 (operation_statement -> MUL OBRACE statement CBRACE BY OBRACE statement CBRACE .)
+    $end            reduce using rule 10 (operation_statement -> MUL OBRACE statement CBRACE BY OBRACE statement CBRACE .)
+    CBRACE          reduce using rule 10 (operation_statement -> MUL OBRACE statement CBRACE BY OBRACE statement CBRACE .)
+
+
+state 58
+
+    (11) operation_statement -> DIV OBRACE statement CBRACE BY OBRACE statement CBRACE .
+
+    NEXT            reduce using rule 11 (operation_statement -> DIV OBRACE statement CBRACE BY OBRACE statement CBRACE .)
+    $end            reduce using rule 11 (operation_statement -> DIV OBRACE statement CBRACE BY OBRACE statement CBRACE .)
+    CBRACE          reduce using rule 11 (operation_statement -> DIV OBRACE statement CBRACE BY OBRACE statement CBRACE .)
+
+
+state 59
+
+    (12) operation_statement -> ADD OBRACE statement CBRACE W OBRACE statement CBRACE .
+
+    NEXT            reduce using rule 12 (operation_statement -> ADD OBRACE statement CBRACE W OBRACE statement CBRACE .)
+    $end            reduce using rule 12 (operation_statement -> ADD OBRACE statement CBRACE W OBRACE statement CBRACE .)
+    CBRACE          reduce using rule 12 (operation_statement -> ADD OBRACE statement CBRACE W OBRACE statement CBRACE .)
+
+
+state 60
+
+    (13) operation_statement -> SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE .
+
+    NEXT            reduce using rule 13 (operation_statement -> SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE .)
+    $end            reduce using rule 13 (operation_statement -> SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE .)
+    CBRACE          reduce using rule 13 (operation_statement -> SUB OBRACE statement CBRACE FROM OBRACE statement CBRACE .)
+
